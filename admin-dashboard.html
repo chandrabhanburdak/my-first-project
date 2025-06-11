@@ -1,0 +1,44 @@
+<!-- admin-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://kit.fontawesome.com/14e928fcae.js" crossorigin="anonymous"></script>
+    <script type="module" src="admin-dashboard.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <h1>Travel Vista Dashboard</h1>
+        <nav>
+            <a style="cursor: pointer;" onclick="location.href='admin-login.html'">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
+        </nav>
+    </header>
+
+   <div class="dashboard">
+  <h2>Welcome, Admin!</h2>
+
+  <div class="summary-cards">
+    <div class="summary-card"  onclick="location.href='all-booking.html'" title="Click to see more">
+      <h3>Total Bookings</h3>
+      <p id="totalBookings"></p>
+    </div>
+    <div class="summary-card" onclick="location.href='all-users.html'" title="Click to see more">
+      <h3>Total Users</h3>
+      <p id="totalUsers"></p>
+    </div>
+  </div>
+
+  
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelVista</title>
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="google-site-verification" content="7O5oA_G0ZokESuwoG1ksdEENIwVLW5wHLF99Zv0WqS8" />
+    <script src="https://kit.fontawesome.com/14e928fcae.js" crossorigin="anonymous"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDW0YGvrq4xNJjlUYkquwtaqvJkrbgszFw",
+            authDomain: "travelvista-f1f40.firebaseapp.com",
+            projectId: "travelvista-f1f40",
+            storageBucket: "travelvista-f1f40.appspot.com",
+            messagingSenderId: "3932841473",
+            appId: "1:3932841473:web:685453147f8675eac2c200"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app); 
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">TravelVista</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-item">Home</a></li>
+            <!-- <li><a href="#booktrip" class="nav-item">BookTrip</a></li> -->
+            <li><a href="#places" class="nav-item">ExplorePlaces</a></li>
+            <li><a href="#" id="myBookings" class="nav-item">MyBookings</a></li>
+            <li><a href="#contact" class="nav-item">Contact</a></li>
+        </ul>
+        <div class="account">
+            <div class="icon">
+                <i id="user" class="fa-solid fa-user"></i>
+            </div>
+            <p id="account">Account</p>
+        </div>
+    </nav>
+    <div id="userMenu" class="user-menu">
+        <h3>My Account</h3><br>
+        <p><strong>Name:</strong> <span id="userName"></span></p><br>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p><br>
+        <button id="login-btn"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
+        <button id="logout-btn">Log Out <i class="fa-solid fa-right-from-bracket"></i></button>
+
+    </div>
+    <div id="myBookingsPopup" class="popup1">
+        <div class="popup-content1">
+            <button id="closeMyBookings"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Your Bookings!</h2>
+            <div class="bookings-container">
+                <!-- booking cards -->
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="video-background" id="home">
+        <video autoplay loop muted playsinline preload="auto">
+            <source src="images/video.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+        <div class="main-text">
+            <h1>Don’t Just Exist, <br>
+                Live Your Best Travel Life!
+            </h1>
+            <p>Discover the most stunning places & make every journey unforgettable.</p>
+            <div class="booktrip"><a href="#places" class="nav-item">Let’s Go!</a></div>
+        </div>
+    </div>
+    <div class="book" id="booktrip">
+
+        <div class="booking">
+            <form id="myForm">
+                <div class="form" id="book">
+                    <button id="close-form"><i class="fa-solid fa-xmark"></i></button>
+                    <h2>Book Your Tour Now!</h2>
+
+                    <input type="text" placeholder="Enter your name" required><br><br>
+
+                    <input type="text" id="city" placeholder="Where You Gone" required><br><br>
+                    <input type="tel" placeholder="Enter your phone number" pattern="[0-9]{10}" required><br><br>
+
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <span id="email-error" ></span>
+
+                    <p>Member's :-</p>
+                    <input type="number" id="member" value="1" max="10">
+                    <p>Journey Start On :-</p>
+                    <input id="startDate" type="date" required>
+                    <p><strong>Tour Duration: 11 Days (Fixed)</strong></p> <!-- End Date Removed -->
+
+                    <p class="price">Total Price: ₹<span id="price">0</span></p>
+
+                    <button type="submit" class="form-btn" id="submit">Book </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="popup2">
+            <h3>Booking Confirmed! </h3>
+            <p>Thank you for booking your tour with us. You will receive a confirmation email shortly.</p>
+            
+        </div>
+    </div>
+
+
+    <div class="why-choose-us">
+        <h2>Why <span>Choose Us?</span></h2>
+
+        <div class="features">
+            <div class="feature">
+                <img src="images/secure.png">
+                <h3>100% Secure Booking</h3>
+                <p>Your data and payment are safe with us.</p>
+            </div>
+            <div class="feature">
+                <img src="images/guide.png">
+                <h3>Expert Travel Guides</h3>
+                <p>Get assistance from our experienced travel experts.</p>
+            </div>
+            <div class="feature">
+                <img src="images/customer.png">
+                <h3>24/7 Customer Support</h3>
+                <p>We are available anytime you need help.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="reviews">
+        <h2>"Hear It from Our Travelers!"</h2>
+        <div class="review-container">
+            <div class="review-slider">
+                <div class="review-group">
+                    <div class="review-box">
+                        <p>“Highly recommend! The customer service was top-notch.”</p>
+                        <h4>- Priya Verma</h4>
+                    </div>
+                    <div class="review-box">
+                        <p>“The best travel agency I’ve ever used. 5 stars!”</p>
+                        <h4>- Aman Gupta</h4>
+                    </div>
+                    <div class="review-box">
+                        <p>“My honeymoon trip to Bali was just perfect. Thanks a lot!”</p>
+                        <h4>- Sanya Malhotra</h4>
+                    </div>
+                    <div class="review-box">
+                        <p>“Great deals and amazing support from the team.”</p>
+                        <h4>- Rahul Mehta</h4>
+                    </div>
+                    <div class="review-box">
+                        <p>“Had an issue with my booking, but they solved it within an hour. Superb!”</p>
+                        <h4>- Kiran Joshi</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <hr>
+    <div class="best-place" id="places">
+        <div class="head">
+            <h1>Explore<span> Best Places</span></h1>
+        </div>
+        <div class="places">
+            <div class="place-card">
+                <img src="images/p1.jpg">
+                <h3>Bangalore, India</h3>
+                <p>Price: ₹<span class="place-price">14800</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.3 (2,336 reviews)</p>
+                <button class="book-now" data-city="Bangalore, India" data-price="14800">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/p2.webp">
+                <h3>Mumbai, India</h3>
+                <p>Price: ₹<span class="place-price">13450</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.5 (3,200 reviews)</p>
+                <button class="book-now" data-city="Mumbai, India" data-price="13450">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/p3.jpeg">
+                <h3>Hyderabad, India</h3>
+                <p>Price: ₹<span class="place-price">11900</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.1 (2,900 reviews)</p>
+                <button class="book-now" data-city="Hyderabad, India" data-price="11900">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/p4.webp">
+                <h3>Kerala, India</h3>
+                <p>Price: ₹<span class="place-price">9400</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.0 (678 reviews)</p>
+                <button class="book-now" data-city="Kerala, India" data-price="9400">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/p5.webp">
+                <h3>Kolkata, India</h3>
+                <p>Price: ₹<span class="place-price">13100</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.1 (976 reviews)</p>
+                <button class="book-now" data-city="Kolkata, India" data-price="13100">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/p6.webp">
+                <h3>Pune, India</h3>
+                <p>Price: ₹<span class="place-price">7500</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 3.9 (789 reviews)</p>
+                <button class="book-now" data-city="Pune, India" data-price="7500">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/p7.webp">
+                <h3>Jaipur, India</h3>
+                <p>Price: ₹<span class="place-price">14200</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.6 (2,432 reviews)</p>
+                <button class="book-now" data-city="Jaipur, India" data-price="14200">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/p8.jpeg">
+                <h3>Shimla, India</h3>
+                <p>Price: ₹<span class="place-price">1800</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.7 (5,454 reviews)</p>
+                <button class="book-now" data-city="Shimla, India" data-price="1800">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/p9.jpg">
+                <h3>Goa, India</h3>
+                <p>Price: ₹<span class="place-price">11700</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.7 (1,977 reviews)</p>
+
+                <button class="book-now" data-city="Goa, India" data-price="11700">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/best-1.jpg">
+                <h3>Varanasi, India</h3>
+                <p>Price: ₹<span class="place-price">7100</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.3 (1,332 reviews)</p>
+
+                <button class="book-now" data-city="Varanasi, India" data-price="7100">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/best-2.jpg">
+                <h3>Amritsar, India</h3>
+                <p>Price: ₹<span class="place-price">9000</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.2 (830 reviews)</p>
+
+                <button class="book-now" data-city="Amritsar, India" data-price="9000">Book Now</button>
+            </div>
+            <div class="place-card">
+                <img src="images/best-3.jpg">
+                <h3>Kashmir, India</h3>
+                <p>Price: ₹<span class="place-price">17000</span></p>
+                <p class="rating"><i id="ratings" class="fa-solid fa-star"></i> 4.7 (3,543 reviews)</p>
+
+                <button class="book-now" data-city="Kashmir, India" data-price="17000">Book Now</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="contact" id="contact">
+        <div class="contact-form">
+            <h2>Let's Connect!</h2>
+            <p>Fill the details below and we will get back to you soon!</p>
+
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Enter Name" required>
+                <input type="email" id="email" placeholder="Enter Email" required>
+                <textarea id="message" placeholder="Enter Message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> +91 98765 4310</p>
+                <p><i class="fas fa-envelope"></i> travelvista@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Sikar, India</p>
+            </div>
+
+            <div class="social-icons">
+                <a><i class="fab fa-facebook"></i></a>
+                <a><i class="fab fa-instagram"></i></a>
+                <a><i class="fab fa-twitter"></i></a>
+                <a><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div id="successPopup">
+            <p class="thanks">Thank you<i id="heart" class="fa-solid fa-heart"></i></p><br>
+            <p>Our team will review your message and get back to you as soon as possible.</p>
+        </div>
+    </div>
+
+    </div>
+    <div class="footer">
+        <div class="text">
+            <h3>About Us :-</h3>
+            <p>"Our travel website aims to provide you with unique and memorable travel experiences. We offer insights
+                into the best destinations, hotels, and activities around the world. Travel with us and explore new
+                places, because every journey tells a new story waiting to be discovered."</p>
+        </div>
+        <div class="text">
+            <h3>Services :-</h3>
+            <p>"Our services include personalized travel planning, hotel bookings, guided tours, and travel insurance.
+                We strive to make your travel experience seamless and enjoyable. Whether you're looking for adventure,
+                relaxation, or cultural exploration, our expert team is here to assist you in creating unforgettable
+                memories on your journey."
+            </p>
+        </div>
+
+        <div class="text">
+            <h3>Address :-</h3>
+            <p> "Travel Dreams Pvt. Ltd.
+                123, Pink City Road,
+                Near Hawa Mahal,
+                Jaipur, Rajasthan, 302001,
+                India"</p>
+        </div>
+    </div>
+
+    </div>
+    <div class="developers">
+        <h4>Developers <i id="heart" class="fa-solid fa-heart"></i> </h4>
+        <p><span>Frontend developer </span><i class="fa-solid fa-arrow-right"></i> Jitendra Singh</p>
+        <p><span>Backend developer</span> <i class="fa-solid fa-arrow-right"></i> Chandrabhan Burdak</p>
+        <div class="admin-pannel" onclick="location.href='admin-login.html'">
+            <p title="Go to admin pannel"><i class="fa-solid fa-user-tie"></i></p>
+        </div>
+    </div>
+
+    <div id="popup3" class="popup3"> <i class="fa-solid fa-triangle-exclamation">&nbsp; </i> Please login first to book!
+    </div>
+    <div id="popup4" class="popup4">
+        <div class="popup4-content">
+            <p>Are you sure you want to cancel this booking?</p>
+            <button id="confirmCancel">Yes, Cancel</button>
+            <button id="closePopup4">No, Keep It</button>
+        </div>
+    </div>
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("video").play();
+        });
+
+       
+        const navItems = document.querySelectorAll('.nav-item');
+
+       
+        navItems.forEach(item => {
+            item.addEventListener('click', function () {
+               
+                navItems.forEach(link => link.classList.remove('active'));
+
+               
+                this.classList.add('active');
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let popup2 = document.getElementById('popup2');
+            popup2.style.display = 'block';
+            setTimeout(() => {
+                popup2.style.opacity = '1';
+                popup2.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 50); 
+
+            
+            setTimeout(function () {
+                popup2.style.opacity = '0';
+                popup2.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                setTimeout(() => {
+                    popup2.style.display = 'none';
+                }, 300); 
+            }, 5000);
+        });
+
+
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let contactForm = document.getElementById("contactForm");
+            let popup = document.getElementById("successPopup");
+
+
+            contactForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                let nameField = document.getElementById("name");
+                let emailField = document.getElementById("email");
+                let messageField = document.getElementById("message");
+
+                if (!nameField || !emailField || !messageField) {
+                    console.error(" Error: One or more input fields not found! Check HTML IDs.");
+                    return;
+                }
+
+                let name = nameField.value.trim();
+                let email = emailField.value.trim();
+                let message = messageField.value.trim();
+
+                if (name === "" || email === "" || message === "") {
+
+                    return;
+                }
+
+                contactForm.reset();
+
+                if (popup) {
+                    popup.style.display = "block";
+                } else {
+                    console.error(" Error: Popup div not found!");
+                }
+
+                setTimeout(function () {
+                    if (popup) popup.style.display = "none";
+                }, 7000);
+            });
+        });
+        function closePopup() {
+            let popup = document.getElementById("successPopup");
+            if (popup) popup.style.display = "none";
+        }
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const userIcon = document.getElementById("user");
+            const userMenu = document.getElementById("userMenu");
+            const loginBtn = document.getElementById("login-btn");
+            const logoutBtn = document.getElementById("logout-btn");
+
+            if (!userIcon || !userMenu || !loginBtn || !logoutBtn) {
+                console.error(" Error: Some elements not found in DOM!");
+                return;
+            }
+
+            
+            userIcon.addEventListener("click", function (event) {
+                event.stopPropagation();
+                
+
+                if (userMenu.style.display === "none" || userMenu.style.display === "") {
+                    userMenu.style.display = "block";
+                } else {
+                    userMenu.style.display = "none";
+                }
+            });
+
+          
+            document.addEventListener("click", function (event) {
+                if (!userMenu.contains(event.target) && !userIcon.contains(event.target)) {
+                    userMenu.style.display = "none";
+                }
+            });
+
+            
+            loginBtn.addEventListener("click", function () {
+                
+                window.location.href = "login.html";
+            });
+
+           
+            logoutBtn.addEventListener("click", function () {
+                userMenu.style.display = "none";
+                window.location.href = "login.html"; 
+            });
+        });
+    </script>
+
+
+    <script src="login.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

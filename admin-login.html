@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login</title>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0a192f;
+      color: #00e5ff;
+    }
+
+    .login-container {
+      background: rgba(17, 34, 64, 0.95);
+      padding: 40px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 8px 20px rgba(0, 229, 255, 0.3);
+      text-align: center;
+      border: 1px solid rgba(0, 229, 255, 0.6);
+    }
+
+    .login-container h2 {
+      color: #00e5ff;
+      margin-bottom: 20px;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(0, 229, 255, 0.5);
+      border-radius: 5px;
+      background: rgba(0, 229, 255, 0.1);
+      color: #00e5ff;
+      font-size: 16px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .login-container input::placeholder {
+      color: rgba(0, 229, 255, 0.6);
+    }
+
+    .login-container input:focus {
+      outline: none;
+      border-color: #00e5ff;
+      background: rgba(0, 229, 255, 0.2);
+      transform: scale(1.03);
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #0066ff, #00e5ff);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .login-container button:hover {
+      background: linear-gradient(90deg, #0055dd, #00caff);
+      transform: scale(1.05);
+    }
+
+    .error {
+      text-align: center;
+      color: #ff4d4d;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Admin Login</h2>
+    <form id="admin-login-form">
+      <input type="email" id="email" placeholder="Enter your Email" required />
+      <input type="password" id="password" placeholder="Enter Password" required />
+      <button type="submit">Login</button>
+      <div class="error" id="error-msg"></div>
+    </form>
+  </div>
+
+  <script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDW0YGvrq4xNJjlUYkquwtaqvJkrbgszFw",
+  authDomain: "travelvista-f1f40.firebaseapp.com",
+  projectId: "travelvista-f1f40",
+  storageBucket: "travelvista-f1f40.appspot.com",
+  messagingSenderId: "3932841473",
+  appId: "1:3932841473:web:685453147f8675eac2c200"
+};
+
+
+firebase.initializeApp(firebaseConfig);
+
+
+const adminEmail = "travel@gmail.com";  
+
+document.getElementById("admin-login-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorMsg = document.getElementById("error-msg");
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      if (email === adminEmail) {
+        window.location.href = "admin-dashboard.html"; 
+      } else {
+        errorMsg.textContent = "You are not authorized as Admin.";
+        firebase.auth().signOut(); 
+      }
+    })
+    .catch((error) => {
+      errorMsg.textContent = "Invalid Email or Password!";
+    });
+});
+
+  </script>
+</body>
+
+</html>
